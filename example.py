@@ -1,6 +1,6 @@
 import skimage.data
 import numpy
-import matplotlib
+from matplotlib import pyplot
 import NumPyCNN as numpycnn
 
 """
@@ -22,22 +22,22 @@ For more info., contact me:
 """
 
 # Reading the image
-#img = skimage.io.imread("test.jpg")
-#img = skimage.data.checkerboard()
+# img = skimage.io.imread("test.jpg")
+# img = skimage.data.checkerboard()
 img = skimage.data.chelsea()
-#img = skimage.data.camera()
+# img = skimage.data.camera()
 
 # Converting the image into gray.
 img = skimage.color.rgb2gray(img)
 
 # First conv layer
-#l1_filter = numpy.random.rand(2,7,7)*20 # Preparing the filters randomly.
-l1_filter = numpy.zeros((2,3,3))
-l1_filter[0, :, :] = numpy.array([[[-1, 0, 1], 
-                                   [-1, 0, 1], 
+# l1_filter = numpy.random.rand(2,7,7)*20 # Preparing the filters randomly.
+l1_filter = numpy.zeros((2, 3, 3))
+l1_filter[0, :, :] = numpy.array([[[-1, 0, 1],
+                                   [-1, 0, 1],
                                    [-1, 0, 1]]])
-l1_filter[1, :, :] = numpy.array([[[1,   1,  1], 
-                                   [0,   0,  0], 
+l1_filter[1, :, :] = numpy.array([[[1, 1, 1],
+                                   [0, 0, 0],
                                    [-1, -1, -1]]])
 
 print("\n**Working with conv layer 1**")
@@ -69,16 +69,16 @@ l3_feature_map_relu_pool = numpycnn.pooling(l3_feature_map_relu, 2, 2)
 print("**End of conv layer 3**\n")
 
 # Graphing results
-fig0, ax0 = matplotlib.pyplot.subplots(nrows=1, ncols=1)
+fig0, ax0 = pyplot.subplots(nrows=1, ncols=1)
 ax0.imshow(img).set_cmap("gray")
 ax0.set_title("Input Image")
 ax0.get_xaxis().set_ticks([])
 ax0.get_yaxis().set_ticks([])
-matplotlib.pyplot.savefig("in_img.png", bbox_inches="tight")
-matplotlib.pyplot.close(fig0)
+pyplot.savefig("in_img.png", bbox_inches="tight")
+pyplot.close(fig0)
 
 # Layer 1
-fig1, ax1 = matplotlib.pyplot.subplots(nrows=3, ncols=2)
+fig1, ax1 = pyplot.subplots(nrows=3, ncols=2)
 ax1[0, 0].imshow(l1_feature_map[:, :, 0]).set_cmap("gray")
 ax1[0, 0].get_xaxis().set_ticks([])
 ax1[0, 0].get_yaxis().set_ticks([])
@@ -109,11 +109,11 @@ ax1[2, 0].get_xaxis().set_ticks([])
 ax1[2, 0].get_yaxis().set_ticks([])
 ax1[2, 1].set_title("L1-Map2ReLUPool")
 
-matplotlib.pyplot.savefig("L1.png", bbox_inches="tight")
-matplotlib.pyplot.close(fig1)
+pyplot.savefig("L1.png", bbox_inches="tight")
+pyplot.close(fig1)
 
 # Layer 2
-fig2, ax2 = matplotlib.pyplot.subplots(nrows=3, ncols=3)
+fig2, ax2 = pyplot.subplots(nrows=3, ncols=3)
 ax2[0, 0].imshow(l2_feature_map[:, :, 0]).set_cmap("gray")
 ax2[0, 0].get_xaxis().set_ticks([])
 ax2[0, 0].get_yaxis().set_ticks([])
@@ -159,11 +159,11 @@ ax2[2, 2].get_xaxis().set_ticks([])
 ax2[2, 2].get_yaxis().set_ticks([])
 ax2[2, 2].set_title("L2-Map3ReLUPool")
 
-matplotlib.pyplot.savefig("L2.png", bbox_inches="tight")
-matplotlib.pyplot.close(fig2)
+pyplot.savefig("L2.png", bbox_inches="tight")
+pyplot.close(fig2)
 
 # Layer 3
-fig3, ax3 = matplotlib.pyplot.subplots(nrows=1, ncols=3)
+fig3, ax3 = pyplot.subplots(nrows=1, ncols=3)
 ax3[0].imshow(l3_feature_map[:, :, 0]).set_cmap("gray")
 ax3[0].get_xaxis().set_ticks([])
 ax3[0].get_yaxis().set_ticks([])
@@ -179,5 +179,5 @@ ax3[2].get_xaxis().set_ticks([])
 ax3[2].get_yaxis().set_ticks([])
 ax3[2].set_title("L3-Map1ReLUPool")
 
-matplotlib.pyplot.savefig("L3.png", bbox_inches="tight")
-matplotlib.pyplot.close(fig3)
+pyplot.savefig("L3.png", bbox_inches="tight")
+pyplot.close(fig3)

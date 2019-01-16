@@ -30,7 +30,7 @@ def conv_(img, conv_filter):
             """
             Getting the current region to get multiplied with the filter.
             How to loop through the image and get the region based on 
-            the image and filer sizes is the most tricky part of convolution.
+            the image and filter sizes is the most tricky part of convolution.
             """
             curr_region = img[r-numpy.uint16(numpy.floor(filter_size/2.0)):r+numpy.uint16(numpy.ceil(filter_size/2.0)), 
                               c-numpy.uint16(numpy.floor(filter_size/2.0)):c+numpy.uint16(numpy.ceil(filter_size/2.0))]
